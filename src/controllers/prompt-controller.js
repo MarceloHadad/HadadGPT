@@ -1,11 +1,13 @@
+const inputPrompt = require("../models/input-prompt");
 const openai = require("../config/openai");
 
 module.exports = class OpenAI {
   async sendText(req, res) {
     const openaiApi = openai.configuration();
+    const inputModel = new inputPrompt(req.body);
 
     try {
-        const response = await openaiApi.createCompletion(openai.textCompletion(req.body));
+        const response = await openaiApi.createCompletion(openai.textCompletion(inputModel));
         return res.status(200).json({
             success: true,
             data: response.data.choices[0].text,
