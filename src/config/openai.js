@@ -8,13 +8,13 @@ module.exports = class openai {
     return new OpenAiApi(configuration);
   }
 
-  static textCompletion({prompt}) {
+  static textCompletion({ prompt }) {
     return {
       engine: "text-davinci-003",
       prompt: `${prompt}`,
       maxTokens: 256,
       temperature: 0,
-    }
+    };
   }
 };
 
