@@ -1,7 +1,7 @@
 const inputPrompt = require("../models/input-prompt");
 const openai = require("../config/openai");
 
-module.exports = class OpenAI {
+module.exports = {
   async sendText(req, res) {
     const openaiApi = openai.configuration();
     const inputModel = new inputPrompt(req.body);
@@ -18,9 +18,9 @@ module.exports = class OpenAI {
       return res.status(400).json({
         success: false,
         message: error.response
-          ? error.response
+          ? error.response.data
           : "An error occurred while sending the text to OpenAI. Please try again.",
       });
     }
-  }
+  },
 };

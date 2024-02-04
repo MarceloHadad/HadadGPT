@@ -17,5 +17,3 @@ module.exports = class openai {
     };
   }
 };
-
-const response = await openai.createCompletion();
