@@ -1,10 +1,10 @@
-const inputPrompt = require("../models/input-prompt");
+const userInputPrompt = require("../models/user-input-prompt");
 const openai = require("../config/openai");
 
 module.exports = {
   async sendText(req, res) {
     const openaiApi = openai.configuration();
-    const inputModel = new inputPrompt(req.body);
+    const userInput = new userInputPrompt(req.body);
 
     try {
       const response = await openaiApi.chat.completions.create(
