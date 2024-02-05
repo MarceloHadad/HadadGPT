@@ -1,19 +1,22 @@
-const openai = require("openai");
+const OpenAI = require("openai");
 
 module.exports = class openai {
   static configuration() {
-    const configuration = new Configuration({
+    const openai = new OpenAI({
       apiKey: process.env.OPENAI_API_KEY,
     });
-    return new OpenAiApi(configuration);
+    return openai;
   }
 
   static textCompletion({ prompt }) {
     return {
-      engine: "text-davinci-003",
-      prompt: `${prompt}`,
-      maxTokens: 256,
-      temperature: 0,
+      model: "gpt-3.5-turbo",
+      messages: [
+        {
+          role: "user",
+          content: `${prompt}`,
+        },
+      ],
     };
   }
 };

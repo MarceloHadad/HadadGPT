@@ -7,12 +7,12 @@ module.exports = {
     const inputModel = new inputPrompt(req.body);
 
     try {
-      const response = await openaiApi.createCompletion(
+      const response = await openaiApi.chat.completions.create(
         openai.textCompletion(inputModel)
       );
       return res.status(200).json({
         success: true,
-        data: response.data.choices[0].text,
+        data: response.choices[0].message.content,
       });
     } catch (error) {
       return res.status(400).json({
